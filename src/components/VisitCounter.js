@@ -8,7 +8,7 @@ const VisitCounter = () => {
     // Fetch the current visit count from backend
     const fetchVisitCount = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/visit-count');
+            const response = await axios.get('https://my-page-counter-adfd8ffc998a.herokuapp.com/api/visit');
             setVisitCount(response.data);
         } catch (error) {
             console.error('Error fetching visit count:', error);
@@ -18,7 +18,7 @@ const VisitCounter = () => {
     // Increment the visit count
     const incrementVisitCount = async () => {
         try {
-            await axios.post('http://localhost:8080/api/visit-count/increment');
+            await axios.post('https://my-page-counter-adfd8ffc998a.herokuapp.com/api/increment');
             fetchVisitCount();  // Refresh the count
         } catch (error) {
             console.error('Error incrementing visit count:', error);
@@ -28,7 +28,7 @@ const VisitCounter = () => {
     // Update the visit count to a specific value
     const updateVisitCount = async () => {
         try {
-            await axios.post('http://localhost:8080/api/visit-count/update', newCount);
+            await axios.post('https://my-page-counter-adfd8ffc998a.herokuapp.com/api/visit', newCount);
             fetchVisitCount();  // Refresh the count
         } catch (error) {
             console.error('Error updating visit count:', error);

@@ -7,21 +7,21 @@ const App = () => {
 
     // Fetch the current visit count when the component mounts
     useEffect(() => {
-        axios.get('http://localhost:8070/api/visit')
+        axios.get('https://my-page-counter-adfd8ffc998a.herokuapp.com/api/visit')
             .then(response => {
                 setVisitCount(response.data);
             })
             .catch(error => console.error('Error fetching visit count:', error));
 
         // Increment the visit count when the page loads
-        axios.post('http://localhost:8070/api/increment')
+        axios.post('https://my-page-counter-adfd8ffc998a.herokuapp.com/api/increment')
             .catch(error => console.error('Error incrementing visit count:', error));
     }, []);
 
     // Update the page visit count in the backend
     const handleChangeCount = () => {
         // Send the new count to the backend with the correct Content-Type header
-        axios.post('http://localhost:8070/api/visit', newCount, {
+        axios.post('https://my-page-counter-adfd8ffc998a.herokuapp.com/api/visit', newCount, {
             headers: {
                 'Content-Type': 'application/json'  // Specify that we're sending JSON data
             }

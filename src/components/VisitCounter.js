@@ -19,7 +19,7 @@ const VisitCounter = () => {
     const incrementVisitCount = async () => {
         try {
             await axios.post('https://my-page-counter-adfd8ffc998a.herokuapp.com/api/increment');
-            fetchVisitCount();  // Refresh the count
+            fetchVisitCount();  // Refresh the count after incrementing
         } catch (error) {
             console.error('Error incrementing visit count:', error);
         }
@@ -28,15 +28,21 @@ const VisitCounter = () => {
     // Update the visit count to a specific value
     const updateVisitCount = async () => {
         try {
-            await axios.post('https://my-page-counter-adfd8ffc998a.herokuapp.com/api/visit', newCount);
-            fetchVisitCount();  // Refresh the count
+            // Convert newCount to a number before sending
+            const updatedCount = Number(newCount);
+            if (!isNaN(updatedCount)) {
+                await axios.post('https://my-page-counter-adfd8ffc998a.herokuapp.com/api/visit', updatedCount);
+                fetchVisitCount();  // Refresh the count after updating
+            } else {
+                console.error('Invalid count value');
+            }
         } catch (error) {
             console.error('Error updating visit count:', error);
         }
     };
 
     useEffect(() => {
-        fetchVisitCount(); // Fetch visit count on mount
+        fetchVisitCount(); // Fetch visit count when the component mounts
     }, []);
 
     return (

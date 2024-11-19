@@ -20,10 +20,11 @@
 }
 
 .header {
-  font-size: 2rem;
-  color: #4CAF50; /* Green color for header */
+  font-size: 2.5rem;
+  color: #4CAF50;  /* Green color for header */
   margin-bottom: 20px;
   font-weight: bold;
+  text-transform: capitalize; /* Capitalize first letter of the greeting */
 }
 
 .visit-count {

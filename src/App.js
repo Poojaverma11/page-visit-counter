@@ -32,10 +32,22 @@ const App = () => {
             .catch(error => console.error('Error updating visit count:', error));
     };
 
+    // Get the current hour of the day for dynamic greeting
+    const getGreeting = () => {
+        const currentHour = new Date().getHours();
+        if (currentHour < 12) {
+            return 'Good Morning';
+        } else if (currentHour < 18) {
+            return 'Good Afternoon';
+        } else {
+            return 'Good Evening';
+        }
+    };
+
     return (
         <div className="App">
             <div className="container">
-                <h1 className="header">Page Visit Counter</h1>
+                <h1 className="header">{getGreeting()}, User!</h1>  {/* Greet the user */}
                 <p className="visit-count">Current visit count: {visitCount}</p>
 
                 <div className="input-container">
